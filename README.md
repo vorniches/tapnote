@@ -1,60 +1,55 @@
-# Prototype – Django + OpenAI Quick Start Project
+# TapNote
 
-This is a quick-start template for setting up a **Django** project with **OpenAI integration**. The project is containerized with Docker, allowing for easy setup and consistent deployment.
+TapNote is a minimalist, self-hosted publishing platform inspired by Telegra.ph, focusing on instant Markdown-based content creation. It provides a distraction-free writing experience with instant publishing capabilities, making it perfect for quick notes, blog posts, or documentation sharing.
 
-## Requirements
+## Features
 
-Before starting, ensure you have:
+- **Minimalist Writing Experience**
+  - Clean, distraction-free Markdown editor
+  - No account required
+  - Instant publishing with a single click
+  - Support for full Markdown syntax
+  - Self-hosted: maintain full control over your content
 
-- **Docker** and **Docker Compose** installed (latest versions recommended).
+- **Content Management**
+  - Unique URL for each post
+  - Edit functionality with secure tokens
+  - Proper rendering of all Markdown elements
+  - Support for images and code snippets
 
 ## Quick Start
 
-### Step 1: Clone the repository
-
+1. Clone the repository:
 ```bash
-git clone https://github.com/vorniches/prototype your_app_name
-cd your_app_name
+git clone https://github.com/vorniches/tapnote.git
+cd tapnote
 ```
 
-### Step 2: Start the project
-
-Run the following command to set up the environment:
-
+2. Start the application using Docker:
 ```bash
+chmod +x setup.sh
 ./setup.sh
 ```
 
-This will:
+3. Access TapNote at `http://localhost:9009`
 
-1. Create a Django project (if not already present).
-2. Move the `openai_helper.py` to the appropriate directory.
-3. Build and start the Docker containers.
+## Contributing
 
-## Access the Application
-
-The Django development server will be available at:
-
-- [http://localhost:9009](http://localhost:9009)
-
-## Configuration
-
-### Environment Variables
-
-1. Copy the `example.env` file to `.env`:
-
-   ```bash
-   cp example.env .env
-   ```
-
-2. Edit `.env` to include your OpenAI API key:
-
-   ```bash
-   OPENAI_API_KEY=<your_openai_api_key>
-   ```
-
-3. Ensure the environment variables are loaded into Django's `settings.py`.
+Feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
 
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+[MIT License](LICENSE)
+
+## Acknowledgments
+
+- Inspired by [Telegra.ph](https://telegra.ph)
+- Built with Django and Tailwind CSS
+- Kickstarted in minutes using [Prototype](https://github.com/vorniches/prototype), [snap2txt](https://github.com/vorniches/snap2txt) and [Cursor](https://cursor.so)
+- Uses Space Mono font by Google Fonts
+
+## Support
+
+- Create an issue for bug reports or feature requests
+- Star the repository if you find it useful
+- Fork it to contribute or create your own version
