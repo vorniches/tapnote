@@ -20,7 +20,11 @@ fi
 docker-compose build --no-cache
 docker-compose up -d
 
-# 5) Remove the .git folder if it exists
+# 5) Apply migrations
+docker-compose exec web python manage.py makemigrations
+docker-compose exec web python manage.py migrate
+
+# 6) Remove the .git folder if it exists
 if [ -d ".git" ]; then
     rm -rf .git
     echo ".git folder removed. You can now initialize your own Git repository."
