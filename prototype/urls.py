@@ -16,7 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from tapnote import views
+from django.conf.urls.static import static
+from django.conf import settings
+
+handler404 = 'tapnote.views.handler404'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path('', views.home, name='home'),
+    path('publish/', views.publish, name='publish'),
+    path('<str:hashcode>/', views.view_note, name='view_note'),
+    path('<str:hashcode>/edit/', views.edit_note, name='edit_note'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
