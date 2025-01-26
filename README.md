@@ -3,6 +3,11 @@
 TapNote is a minimalist, self-hosted publishing platform inspired by Telegra.ph, focusing on instant Markdown-based content creation. It provides a distraction-free writing experience with instant publishing capabilities, making it perfect for quick notes, blog posts, or documentation sharing.
 
 ![Demo](media/demo.gif)
+<p align="center">
+  <a href="https://tapnote-production.up.railway.app/" target="_blank" style="text-decoration:none;">
+    <img src="https://img.shields.io/badge/Live%20Demo-Tap%20Here-blue?style=for-the-badge" alt="Live Demo">
+  </a>
+</p>
 
 ## Features
 
