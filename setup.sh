@@ -26,9 +26,3 @@ docker-compose exec web python manage.py migrate
 
 # 6) Collect static files
 docker-compose exec web python manage.py collectstatic --noinput
-
-# 6) Remove the .git folder if it exists
-if [ -d ".git" ]; then
-    rm -rf .git
-    echo ".git folder removed. You can now initialize your own Git repository."
-fi
