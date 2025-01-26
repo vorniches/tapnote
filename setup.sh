@@ -19,7 +19,3 @@ fi
 # 4) Build & run containers
 docker-compose build --no-cache
 docker-compose up -d
-
-# 5) Apply migrations
-docker-compose exec web python manage.py makemigrations
-docker-compose exec web python manage.py migrate
