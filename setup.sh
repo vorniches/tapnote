@@ -23,9 +23,3 @@ docker-compose up -d
 # 5) Apply migrations
 docker-compose exec web python manage.py makemigrations
 docker-compose exec web python manage.py migrate
-
-# 6) Collect static files
-docker-compose exec web python manage.py collectstatic --noinput
-
-# 7) Restart the web container
-docker-compose restart web

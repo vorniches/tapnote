@@ -15,4 +15,7 @@ RUN chmod +x manage.py
 RUN chmod -R 755 .
 
 EXPOSE 9009
-CMD ["python", "manage.py", "runserver", "0.0.0.0:9009"]
+# CMD ["python", "manage.py", "runserver", "0.0.0.0:9009"]
+
+# Collect static files
+CMD ["bash", "-c", "python manage.py collectstatic --noinput && python manage.py runserver 0.0.0.0:9009"]
