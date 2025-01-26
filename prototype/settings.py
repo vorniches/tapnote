@@ -28,6 +28,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*']  # For development - update this in production
 
+APPEND_SLASH = False
 
 # Application definition
 
