@@ -26,3 +26,6 @@ docker-compose exec web python manage.py migrate
 
 # 6) Collect static files
 docker-compose exec web python manage.py collectstatic --noinput
+
+# 7) Restart the web container
+docker-compose restart web
