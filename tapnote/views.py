@@ -1,7 +1,7 @@
 import markdown
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import Http404
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_exempt
 from .models import Note
 import re
 
@@ -14,7 +14,7 @@ def process_markdown_links(html_content):
 def home(request):
     return render(request, 'tapnote/editor.html')
 
-@csrf_protect
+@csrf_exempt
 def publish(request):
     if request.method == 'POST':
         content = request.POST.get('content', '').strip()
