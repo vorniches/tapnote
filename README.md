@@ -40,6 +40,45 @@ chmod +x setup.sh
 
 3. Access TapNote at `http://localhost:9009`
 
+## Examples
+
+```Markdown
+# Heading 1
+Some paragraph text here.
+
+![Image](https://themepreview.home.blog/wp-content/uploads/2019/07/boat.jpg)
+
+## Heading 2
+Another paragraph of text with some **bold** text, *italic* text, and ~~strikethrough~~ text.
+
+### Heading 3
+1. An ordered list item
+2. Another ordered list item
+
+'```python
+# Some Python code snippet
+def greet(name):
+    return f"Hello, {name}!"
+```'
+
+#### Heading 4
+A quote block:
+> This is a blockquote!
+
+- Sub list item (unordered)
+- Sub list item (unordered)
+
+#### Table Example
+| Column A | Column B |
+|----------|----------|
+| Cell 1A  | Cell 1B  |
+| Cell 2A  | Cell 2B  |
+
+https://youtu.be/vz91QpgUjFc?si=6nTE2LeukJprXiw1
+```
+
+> Note: For correct rendering of code exmaple remove `'` symbols.
+
 ## Contributing
 
 Feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
