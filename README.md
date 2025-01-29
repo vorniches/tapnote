@@ -79,7 +79,7 @@ https://youtu.be/vz91QpgUjFc?si=6nTE2LeukJprXiw1
 
 > Note: For correct rendering of code exmaple remove `'` symbols.
 
-## Deploing
+## Deploying
 
 Deploy TapNote on a server in a few clicks and connect a custom domain with [RailWay](https://railway.com?referralCode=eKC9tt) or your preferred service.
 
