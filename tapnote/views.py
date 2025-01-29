@@ -5,11 +5,36 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Note
 import re
 
+def apply_strikethrough(md_text):
+    # Replace ~~something~~ with <del>something</del>
+    pattern = re.compile(r'~~(.*?)~~', re.DOTALL)
+    return pattern.sub(r'<del>\1</del>', md_text)
+
 def process_markdown_links(html_content):
-    # Add target="_blank" and rel="noopener noreferrer" to all links
+    # Keep existing link processing
     pattern = r'<a(.*?)href="(.*?)"(.*?)>'
     replacement = r'<a\1href="\2"\3 target="_blank" rel="noopener noreferrer">'
-    return re.sub(pattern, replacement, html_content)
+    html_content = re.sub(pattern, replacement, html_content)
+
+    # Existing anchor-based YouTube embed:
+    anchor_yt_pattern = r'<p><a href="https?://(?:www\.)?youtu\.be/([^"]+)".*?>.*?</a></p>'
+    anchor_yt_replacement = (
+        r'<iframe width="560" height="315" '
+        r'src="https://www.youtube.com/embed/\1" '
+        r'frameborder="0" allowfullscreen></iframe>'
+    )
+    html_content = re.sub(anchor_yt_pattern, anchor_yt_replacement, html_content)
+
+    # **Added** plain-text YouTube embed (no anchor tag):
+    plain_yt_pattern = r'<p>https?://(?:www\.)?youtu\.be/([^<]+)</p>'
+    plain_yt_replacement = (
+        r'<iframe width="560" height="315" '
+        r'src="https://www.youtube.com/embed/\1" '
+        r'frameborder="0" allowfullscreen></iframe>'
+    )
+    html_content = re.sub(plain_yt_pattern, plain_yt_replacement, html_content)
+
+    return html_content
 
 def home(request):
     return render(request, 'tapnote/editor.html')
@@ -27,8 +52,13 @@ def publish(request):
 
 def view_note(request, hashcode):
     note = get_object_or_404(Note, hashcode=hashcode)
+    
+    # FIRST apply strikethrough by regex
+    raw_with_del = apply_strikethrough(note.content)
+
+    # THEN convert with standard Markdown (no strikethrough extension)
     md = markdown.Markdown(extensions=['fenced_code', 'tables'])
-    html_content = md.convert(note.content)
+    html_content = md.convert(raw_with_del)
     html_content = process_markdown_links(html_content)
     
     can_edit = (
@@ -60,4 +90,4 @@ def edit_note(request, hashcode):
     return render(request, 'tapnote/editor.html', {'note': note})
 
 def handler404(request, exception):
-    return render(request, 'tapnote/404.html', status=404) 
+    return render(request, 'tapnote/404.html', status=404)

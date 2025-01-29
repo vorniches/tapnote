@@ -6,7 +6,8 @@
         {% csrf_token %}
         <textarea 
             name="content" 
-            class="w-full h-96 p-4 focus:outline-none resize-none"
+            class="w-full p-4 focus:outline-none resize-none" 
+            style="height:auto; overflow-y:hidden;"
             placeholder="write in markdown"
         >{% if note %}{{ note.content }}{% endif %}</textarea>
         <div class="flex justify-end">
@@ -16,4 +17,22 @@
         </div>
     </form>
 </div>
-{% endblock %} 
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const textarea = document.querySelector('textarea[name="content"]');
+  if (textarea) {
+    // Auto-grow on input
+    function autoGrow(elem) {
+      elem.style.height = 'auto';
+      elem.style.height = (elem.scrollHeight) + 'px';
+    }
+    textarea.addEventListener('input', function() {
+      autoGrow(textarea);
+    });
+    // Initialize once
+    autoGrow(textarea);
+  }
+});
+</script>
+{% endblock %}
