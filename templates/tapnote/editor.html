@@ -1,5 +1,7 @@
 {% extends 'tapnote/base.html' %}
 
+{% load static %}
+
 {% block content %}
 <div class="container mx-auto px-4 py-8 max-w-3xl">
     <form method="post" action="{% if note %}{% url 'edit_note' note.hashcode %}{% else %}{% url 'publish' %}{% endif %}" class="space-y-4">
@@ -17,22 +19,8 @@
         </div>
     </form>
 </div>
+{% endblock %}
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const textarea = document.querySelector('textarea[name="content"]');
-  if (textarea) {
-    // Auto-grow on input
-    function autoGrow(elem) {
-      elem.style.height = 'auto';
-      elem.style.height = (elem.scrollHeight) + 'px';
-    }
-    textarea.addEventListener('input', function() {
-      autoGrow(textarea);
-    });
-    // Initialize once
-    autoGrow(textarea);
-  }
-});
-</script>
+{% block extra_js %}
+<script src="{% static 'js/editor.js' %}"></script>
 {% endblock %}
